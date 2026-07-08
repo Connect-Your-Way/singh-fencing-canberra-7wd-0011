@@ -1,0 +1,230 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   THREE-LAYER TOKEN SYSTEM
+   Layer 1 primitive  -> raw values on systematic scales
+   Layer 2 semantic   -> purpose aliases that reference primitives
+   Layer 3 component  -> component-scoped tokens that reference semantics
+   Nothing downstream hardcodes a raw value; everything resolves through tokens.
+   ========================================================================== */
+
+@layer base {
+  :root {
+    /* -------------------------------------------------------------------- */
+    /* LAYER 1 — PRIMITIVES                                                  */
+    /* -------------------------------------------------------------------- */
+
+    /* Timber / tan ramp (warm outdoor-trade browns) */
+    --timber-50: #faf6f0;
+    --timber-100: #f2e8d9;
+    --timber-200: #e4d0b0;
+    --timber-300: #d3b382;
+    --timber-400: #c1975a;
+    --timber-500: #ac7d3d;
+    --timber-600: #8f6530;
+    --timber-700: #6d4c25;
+    --timber-800: #492f16;
+    --timber-900: #2a1b0d;
+
+    /* Charcoal / slate ramp (structure) */
+    --slate-50: #f5f7f7;
+    --slate-100: #e8ebec;
+    --slate-200: #ced5d7;
+    --slate-300: #a9b3b7;
+    --slate-400: #7c878c;
+    --slate-500: #586369;
+    --slate-600: #40484d;
+    --slate-700: #2e353a;
+    --slate-800: #202629;
+    --slate-900: #12171a;
+
+    /* Green ramp (eucalypt accent) */
+    --green-50: #eef4ee;
+    --green-100: #d5e6d6;
+    --green-200: #abccb0;
+    --green-300: #7cae83;
+    --green-400: #518a59;
+    --green-500: #35703d;
+    --green-600: #295a30;
+    --green-700: #1f4525;
+    --green-800: #163019;
+    --green-900: #0c1d0f;
+
+    /* Feedback primitive (kept minimal — no invented claims use these) */
+    --amber-500: #b45309;
+
+    /* Radius scale */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --radius-2xl: 1.5rem;
+    --radius-full: 9999px;
+
+    /* Shadow scale */
+    --shadow-sm: 0 1px 2px 0 rgb(18 23 26 / 0.06);
+    --shadow-md: 0 4px 10px -2px rgb(18 23 26 / 0.10), 0 2px 4px -2px rgb(18 23 26 / 0.06);
+    --shadow-lg: 0 12px 24px -6px rgb(18 23 26 / 0.14), 0 4px 8px -4px rgb(18 23 26 / 0.08);
+    --shadow-xl: 0 24px 48px -12px rgb(18 23 26 / 0.22);
+
+    /* Type scale */
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+    --text-4xl: 2.25rem;
+    --text-5xl: 3rem;
+    --text-6xl: 3.75rem;
+
+    /* Motion */
+    --transition-fast: 150ms;
+    --transition-base: 200ms;
+    --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Font families are supplied by next/font as --font-heading / --font-body */
+
+    /* -------------------------------------------------------------------- */
+    /* LAYER 2 — SEMANTIC                                                    */
+    /* -------------------------------------------------------------------- */
+    --color-background: #ffffff;
+    --color-foreground: var(--slate-800);
+    --color-surface-warm: var(--timber-50);
+    --color-surface-muted: var(--slate-50);
+    --color-surface-dark: var(--slate-800);
+
+    --color-card: #ffffff;
+    --color-card-foreground: var(--slate-800);
+
+    --color-muted: var(--slate-100);
+    --color-muted-foreground: var(--slate-500);
+
+    --color-border: var(--slate-200);
+    --color-border-strong: var(--slate-300);
+    --color-input: var(--slate-200);
+    --color-ring: var(--green-500);
+
+    --color-primary: var(--green-500);
+    --color-primary-hover: var(--green-600);
+    --color-primary-active: var(--green-700);
+    --color-primary-foreground: #ffffff;
+
+    --color-secondary: var(--slate-800);
+    --color-secondary-hover: var(--slate-700);
+    --color-secondary-active: var(--slate-900);
+    --color-secondary-foreground: #ffffff;
+
+    --color-accent: var(--timber-500);
+    --color-accent-hover: var(--timber-600);
+    --color-accent-foreground: var(--timber-50);
+
+    /* On-dark surfaces */
+    --color-on-dark: var(--slate-50);
+    --color-on-dark-muted: var(--slate-300);
+    --color-on-dark-border: var(--slate-600);
+
+    --color-disabled: var(--slate-200);
+    --color-disabled-foreground: var(--slate-400);
+
+    /* -------------------------------------------------------------------- */
+    /* LAYER 3 — COMPONENT                                                   */
+    /* -------------------------------------------------------------------- */
+
+    /* Button */
+    --button-radius: var(--radius-md);
+    --button-focus-ring: var(--color-ring);
+
+    --button-primary-bg: var(--color-primary);
+    --button-primary-bg-hover: var(--color-primary-hover);
+    --button-primary-bg-active: var(--color-primary-active);
+    --button-primary-fg: var(--color-primary-foreground);
+
+    --button-secondary-bg: var(--color-secondary);
+    --button-secondary-bg-hover: var(--color-secondary-hover);
+    --button-secondary-bg-active: var(--color-secondary-active);
+    --button-secondary-fg: var(--color-secondary-foreground);
+
+    --button-outline-border: var(--color-border-strong);
+    --button-outline-fg: var(--color-foreground);
+    --button-outline-bg-hover: var(--color-muted);
+
+    /* Card */
+    --card-bg: var(--color-card);
+    --card-fg: var(--color-card-foreground);
+    --card-border: var(--color-border);
+    --card-radius: var(--radius-xl);
+    --card-shadow: var(--shadow-md);
+    --card-shadow-hover: var(--shadow-lg);
+
+    /* Chip / badge */
+    --chip-bg: var(--color-surface-warm);
+    --chip-fg: var(--timber-800);
+    --chip-border: var(--timber-200);
+
+    /* Nav / header */
+    --nav-bg: rgb(32 38 41 / 0.92);
+    --nav-fg: var(--color-on-dark);
+    --nav-link: var(--color-on-dark-muted);
+    --nav-link-hover: var(--color-on-dark);
+    --nav-border: var(--color-on-dark-border);
+  }
+
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* offset anchored sections so the sticky header doesn't cover headings */
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading), system-ui, sans-serif;
+    letter-spacing: -0.01em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Consistent visible focus ring for keyboard users across the site */
+  .focus-ring {
+    outline: none;
+  }
+  .focus-ring:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px var(--color-background),
+      0 0 0 4px var(--button-focus-ring);
+  }
+  /* Focus ring variant for dark surfaces (header) */
+  .focus-ring-dark:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px var(--color-surface-dark),
+      0 0 0 4px var(--button-focus-ring);
+  }
+}
